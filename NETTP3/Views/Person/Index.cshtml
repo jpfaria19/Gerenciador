@@ -1,0 +1,73 @@
+﻿@model ATNET.Models.BirthdayWrapper
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <td> @Html.ActionLink("Listar", "List") </td>
+    </tr>
+    <tr>
+        <td>@Html.ActionLink("Cadastrar Pessoa", "Create")</td>
+    </tr>
+</table>
+
+
+<div style="width:45%; float: left">
+    <table class="table">
+        <caption class="h1">Aniversariantes do dia</caption>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+        </tr>
+
+        @foreach (var item in Model.birthdayPeople)
+        {
+            int age = DateTime.Now.Year - item.birthday.Year;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                                
+                <td>
+                    @age anos
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div style="width:45%; float: right">
+    <table class="table">
+        <caption class="h1">Próximos aniversariantes</caption>
+        <tr>
+            <th>Nome</th>
+            <th>Quantos anos vai fazer</th>
+            <th>Dia do aniversário</th>
+        </tr>
+
+        @foreach (var item in Model.closeBirthdays)
+        {
+            int age = DateTime.Now.Year - item.birthday.Year;
+            string birthday = String.Format("{0:m}", item.birthday);
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @age anos
+                </td>
+                <td>
+                    @birthday
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div style="clear: both"></div>

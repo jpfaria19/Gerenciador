@@ -1,0 +1,42 @@
+﻿@model ATNET.Models.Person
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do indivíduo</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthday)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Remover esta pessoa", "Delete", new { id = Model.id }) | 
+    @Html.ActionLink("Voltar à lista", "List")
+</p>

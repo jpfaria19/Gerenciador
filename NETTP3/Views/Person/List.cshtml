@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ATNET.Models.Person>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Lista de pessoas</h2>
+
+<p>
+    @Html.ActionLink("Registrar uma nova pessoa", "Create")
+</p>
+
+
+@using (Html.BeginForm("Search", "Person", FormMethod.Post))
+{
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">Buscar</button>
+        </span>
+        <input type="text" name="pSearch" id="pSearch" class="form-control" placeholder="Buscar pelo nome...">
+    </div>
+}  
+
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Sobrenome
+        </th>
+        <th style="text-align: center">
+            Ações
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surName)
+            </td>
+            <td style="text-align: center">
+                @Html.ActionLink("Detalhes", "Details", new { id = item.id }) |
+                @Html.ActionLink("Editar", "Details", new { id = item.id }) |
+                @Html.ActionLink("Remover esta pessoa", "Details", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
